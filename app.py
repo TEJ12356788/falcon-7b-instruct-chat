@@ -149,8 +149,11 @@ conversation = ConversationChain(llm=llm, prompt = prompt,
                                  memory=st.session_state.memory)
 
 st.header('Chat with Falcon-7B-Instruct')
+st.caption('Mobile device users: use the arrow in the top left corner to access settings and stored sessions.')
 st.markdown('''
-Use this app to chat with Falcon-7B-Instruct, at 7-billion parameter instruction-tuned large language model released by the [Technology Innovation Institute](https://www.tii.ae/).  Visit [the model card](https://huggingface.co/tiiuae/falcon-7b-instruct) on [🤗](https://huggingface.co/) or try out the chat below.  Thanks to TII for making this model available to all!
+Use this app to chat with Falcon-7B-Instruct, at 7-billion parameter instruction-tuned large language model released by the [Technology Innovation Institute](https://www.tii.ae/).
+
+Visit [the model card](https://huggingface.co/tiiuae/falcon-7b-instruct) on [🤗](https://huggingface.co/) or try out the chat below.  Thanks to TII for making this model available to all!
 ''')
 
 # Initialize containers for user input and chat feed
