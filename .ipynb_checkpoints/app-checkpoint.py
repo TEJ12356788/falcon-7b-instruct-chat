@@ -15,7 +15,7 @@ load_dotenv()
 huggingfacehub_api_token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
 st.set_page_config(page_title='Falcon-7B-Instruct chat',
-                   page_icon=':parrot:', layout="centered",
+                   page_icon=':parrot:', layout="wide",
                    initial_sidebar_state="auto", menu_items=None)
 
 def generate_response(input_text):
