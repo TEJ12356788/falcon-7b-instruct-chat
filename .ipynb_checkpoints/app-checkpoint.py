@@ -74,7 +74,7 @@ def generate_random_avatar():
     Generates a random user avatar image
     """
     avatar_num = random.choice(range(5))
-    return f'img/user_avatar{avatar_num}.jpeg'
+    return f'./img/user_avatar{avatar_num}.jpeg'
 
 print(st.cache_resource)
 
@@ -211,7 +211,7 @@ with response_container:
         for i in range(len(st.session_state['generated_history'])):
             with st.chat_message('user',avatar = st.session_state['user_avatar']):
                 st.write(st.session_state['user_history'][i])
-            with st.chat_message('assistant',avatar='img/falcon_avatar.jpeg'):
+            with st.chat_message('assistant',avatar='./img/falcon_avatar.jpeg'):
                 st.write(st.session_state['generated_history'][i])
             # message(st.session_state['user_history'][i], is_user=True, key=str(i) + '_user')
             # message(st.session_state['generated_history'][i], key=str(i))
