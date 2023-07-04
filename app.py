@@ -4,9 +4,9 @@ from langchain.memory import ConversationBufferMemory, ConversationBufferWindowM
 from dotenv import load_dotenv, find_dotenv
 import os
 import streamlit as st
-from streamlit_chat import message
-from streamlit_extras.colored_header import colored_header
-from streamlit_extras.add_vertical_space import add_vertical_space
+# from streamlit_chat import message
+# from streamlit_extras.colored_header import colored_header
+# from streamlit_extras.add_vertical_space import add_vertical_space
 import datetime as dt
 import random
 
@@ -74,7 +74,9 @@ def generate_random_avatar():
     Generates a random user avatar image
     """
     avatar_num = random.choice(range(5))
-    return f'./img/user_avatar{avatar_num}.jpeg'
+    return f'https://e-tweedy.github.io/images/user_avatar{avatar_num}.jpeg'
+user_avatar = 'https://github.com/e-tweedy/falcon-7b-instruct-chat/blob/e9388576fd749860882953c5f0d16bd622cdfe0d/img/user_avatar0?raw=true.jpeg'
+falcon_avatar = 'https://github.com/e-tweedy/falcon-7b-instruct-chat/blob/e9388576fd749860882953c5f0d16bd622cdfe0d/img/falcon_avatar?raw=true.jpeg'
 
 print(st.cache_resource)
 
@@ -180,8 +182,6 @@ Visit [the model card](https://huggingface.co/tiiuae/falcon-7b-instruct) on [ðŸ¤
 
 # Initialize containers for user input and chat feed
 input_container = st.container()
-colored_header(label='', description='', color_name='blue-30')
-response_container = st.container()
 
 examples = ['Give me a synopsis of the movie "Up"',
             'How do I make a sandwich?',
@@ -204,14 +204,15 @@ with input_container:
             st.session_state.user_history.append(user_input)
             st.session_state.generated_history.append(response)
             st.session_state['input']=''
-
+st.divider()
+response_container = st.container()
 ## Conditional display of AI generated responses as a function of user provided prompts
 with response_container:       
     if st.session_state['generated_history']:
         for i in range(len(st.session_state['generated_history'])):
-            with st.chat_message('user',avatar = st.session_state['user_avatar']):
+            with st.chat_message('user',avatar=st.session_state.user_avatar):
                 st.write(st.session_state['user_history'][i])
-            with st.chat_message('assistant',avatar='./img/falcon_avatar.jpeg'):
+            with st.chat_message('falcon',avatar='https://e-tweedy.github.io/images/falcon_avatar.jpeg'):
                 st.write(st.session_state['generated_history'][i])
             # message(st.session_state['user_history'][i], is_user=True, key=str(i) + '_user')
             # message(st.session_state['generated_history'][i], key=str(i))
