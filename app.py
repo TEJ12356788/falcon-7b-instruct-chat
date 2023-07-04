@@ -61,7 +61,7 @@ def choose_example(string):
 
 # In function so we can use @st.cache to avoid
 # repeating upon re-runs
-@st.cache_resource
+# @st.cache_resource
 def generate_random_falcon():
     """
     Generates a random falcon image
@@ -75,8 +75,6 @@ def generate_random_avatar():
     """
     avatar_num = random.choice(range(5))
     return f'https://e-tweedy.github.io/images/user_avatar{avatar_num}.jpeg'
-user_avatar = 'https://github.com/e-tweedy/falcon-7b-instruct-chat/blob/e9388576fd749860882953c5f0d16bd622cdfe0d/img/user_avatar0?raw=true.jpeg'
-falcon_avatar = 'https://github.com/e-tweedy/falcon-7b-instruct-chat/blob/e9388576fd749860882953c5f0d16bd622cdfe0d/img/falcon_avatar?raw=true.jpeg'
 
 print(st.cache_resource)
 
@@ -182,6 +180,8 @@ Visit [the model card](https://huggingface.co/tiiuae/falcon-7b-instruct) on [ðŸ¤
 
 # Initialize containers for user input and chat feed
 input_container = st.container()
+st.divider()
+response_container = st.container()
 
 examples = ['Give me a synopsis of the movie "Up"',
             'How do I make a sandwich?',
@@ -204,8 +204,7 @@ with input_container:
             st.session_state.user_history.append(user_input)
             st.session_state.generated_history.append(response)
             st.session_state['input']=''
-st.divider()
-response_container = st.container()
+
 ## Conditional display of AI generated responses as a function of user provided prompts
 with response_container:       
     if st.session_state['generated_history']:
